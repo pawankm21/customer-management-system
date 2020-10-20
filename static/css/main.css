@@ -1,0 +1,24 @@
+#whitesmoke{
+    background: gray;
+}
+
+#card{
+    background-color: rgb(247, 247, 218);
+        color: black;
+        font-size: medium;
+        border-radius: 10px;
+        margin-bottom: 5px;
+      
+    
+}
+
+#searchbutton{
+ inline-size: auto;
+ margin-left: 15px;
+}
+.card{
+    margin-bottom: 10px; 
+    border-width: thick;
+    border-style: solid;
+    border-color: gray;
+}

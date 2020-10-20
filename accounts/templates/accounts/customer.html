@@ -1,0 +1,83 @@
+{% extends 'accounts/main.html' %}
+{% block content %}
+<section>
+  <hr>
+</section>
+<div class="card-deck">
+  <div class="card" id="card">
+    <div class="card-body">
+      <h4 class="card-title">{{customer.name}}</h5>
+      <p class="card-text"><button type="button" class="btn  btn-outline-success btn-lg btn-block">Update Customer</button>
+      <button type="button" class="btn  btn-outline-danger btn-lg btn-block">Delete customer</button>
+      <a name="" id="" class="btn btn-outline-primary btn-lg btn-block" href=" {% url 'forms' customer.id %} " role="button">Create Order</a></p>
+      <p class="card-text"><small class="text-muted">{{customer.date_created}}</small></p>
+    </div>
+  </div>
+  <div class="card" id="card" >
+    <div class="card-body">
+      <h5 class="card-title">Customer Information</h5>
+      <p class="card-text"> <li>Email: {{customer.email}}</li>
+        <li>Phone: {{customer.phone}} </li> 
+        <li>Adress:abc</li>
+      </p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card" id="card">
+    <div class="card-body">
+      <h5 class="card-title">Total Ordered:</h5>
+      <h3 class="card-text">{{total}}</h3>
+      <p class="card-text"><small class="text-muted">last ordered {{latest.date_created}}</small></p>
+    </div>
+  </div>
+</div>
+<div class="card" style="margin-bottom:10px;" >
+  <div class="card-header">
+  </div>
+  <div class="card-body text-center" id='cardmargin'>
+      <blockquote class="blockquote mb-0">
+ 
+  <form class="form-inline  form-row">
+  <div class="form-group mx-sm-1 mb-2 col-8">
+ 
+    <input type="text" class="form-control mx-sm-5 col-11"  placeholder="search">
+  </div>
+  <button type="submit" class="btn btn-primary mb-2">Search</button>
+</form>
+</blockquote>
+  </div>
+</div>
+</div>
+<div class="card text-center">
+ 
+  <div class="card-body" >
+    <h5 class="card-title"></h5>
+      <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Product</th>
+      <th scope="col">Category</th>
+      <th scope="col-2">Date Ordered</th>
+      <th scope="col">Status</th>
+        <th></th>
+        <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in orders %}
+    <tr>
+      <th scope="row">{{i.product}}</th>
+      <td> {{i.customer.category}} </td>
+      <td> {{i.date_created}} </td>
+      <td> {{i.status}} </td>
+        <td><a class="btn btn-success" href="{% url 'update' i.id %}" role="button">Update</a></td>
+        <td><a class="btn btn-danger" href=" {% url 'delete' i.id %} " role="button">Delete</a></td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+  </div>
+    <hr>
+
+</div>
+{% endblock %}

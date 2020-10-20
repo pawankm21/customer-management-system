@@ -1,0 +1,15 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+<form action="" method='POST'>
+{% csrf_token %}
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">Alert!</h4>
+  <p>The {{delete}} will be deleted once you click. Are you sure??</p>
+  <p class="mb-0">Type 'confirm' to proceed</p>
+</div>
+<button type="submit" class="btn btn-danger" method='POST' >delete</button>
+<a name="" id="" class="btn btn-primary" href=" {% url 'home' %} " role="button">back</a>
+</form>
+{% endblock content %}
