@@ -43,9 +43,7 @@ def createorder(request, pk):
     if request.method == 'POST':
         print('printing post:', request.POST)
         formset = OrderFormSet(request.POST, instance=customer)
-        if formset.is_valid():
-            formset.save()
-            return redirect('/')
+        return redirect('/')
     context = {'formset': formset, 'customer': customer}
     return render(request, 'accounts/forms.html', context)
 
@@ -77,5 +75,5 @@ def delete_customer(request, pk):
     if request.method == "POST":
         customer.delete()
         return redirect('/')
-        context = {'customer': customer}
+        context={'customer':customer}
         return render(request, 'accounts/delete_customer.html', context)

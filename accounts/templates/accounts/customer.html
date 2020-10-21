@@ -59,7 +59,7 @@
   <thead>
     <tr>
       <th scope="col">Product</th>
-      <th scope="col">Category</th>
+      <th scope="col">Note</th>
       <th scope="col-2">Date Ordered</th>
       <th scope="col">Status</th>
         <th></th>
@@ -70,7 +70,7 @@
   {% for i in orders %}
     <tr>
       <th scope="row">{{i.product}}</th>
-      <td> {{i.customer.note}} </td>
+      <td> {{i.note}} </td>
       <td> {{i.date_created}} </td>
       <td> {{i.status}} </td>
         <td><a class="btn btn-success" href="{% url 'update' i.id %}" role="button">Update</a></td>
