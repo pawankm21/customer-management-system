@@ -37,12 +37,15 @@
   <div class="card-body text-center" id='cardmargin'>
       <blockquote class="blockquote mb-0">
  
-  <form class="form-inline  form-row">
-  <div class="form-group mx-sm-1 mb-2 col-8">
- 
-    <input type="text" class="form-control mx-sm-5 col-11"  placeholder="search">
+  <form class="form-inline  form-row" method='get'>
+  <div class="form-group mx-sm-1 mb-2 col-10">
+         {% for i in my_filter.form  %}
+         <hr>
+         {{i}}
+         {% endfor %}
+    
   </div>
-  <button type="submit" class="btn btn-primary mb-2">Search</button>
+  <button type="submit" class="btn btn-big btn-primary mb-2 ">Search</button>
 </form>
 </blockquote>
   </div>
@@ -67,7 +70,7 @@
   {% for i in orders %}
     <tr>
       <th scope="row">{{i.product}}</th>
-      <td> {{i.customer.category}} </td>
+      <td> {{i.customer.note}} </td>
       <td> {{i.date_created}} </td>
       <td> {{i.status}} </td>
         <td><a class="btn btn-success" href="{% url 'update' i.id %}" role="button">Update</a></td>

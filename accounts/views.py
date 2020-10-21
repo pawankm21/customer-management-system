@@ -23,7 +23,8 @@ def customer(request, pk):
     orders = customer.order_set.all()
     latest = customer.order_set.latest('date_created')
     total = orders.count()
-    my_filter = OrderFilter()
+    my_filter = OrderFilter(request.GET, queryset=orders) 
+    orders= my_filter.qs
     context = {'orders': orders, 'customer': customer, 'latest': latest, 'total': total, 'my_filter': my_filter}
     return render(request, 'accounts/customer.html', context)
 
