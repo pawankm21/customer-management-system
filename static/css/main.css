@@ -1,13 +1,12 @@
-#whitesmoke{
-    background: gray;
-}
+
 
 #card{
-    background-color: rgb(227, 235, 255);
-        color: black;
+    background-color: #b2f0fa;
+        color:#158a9c;
         font-size: medium;
         border-radius: 10px;
         margin-bottom: 5px;
+        margin-top: 20px;
       
     
 }
@@ -20,5 +19,5 @@
     margin-bottom: 10px; 
     border-width: thick;
     border-style: solid;
-    border-color: gray;
+    border-color:#17A2B8;
 }

@@ -1,39 +1,21 @@
-{% extends 'accounts/main.html' %} {% block content %}
-<form class="form-inline  form-row">
-  <div class="form-group mx-sm-1 mb-2 col-8">
- 
-    <input type="text" class="form-control mx-sm-5 col-11"  placeholder="search">
+{% extends 'accounts/main.html' %} 
+{% block content %}
+<div class="row">
+{% for i in product %}
+  <div class="col-sm-6">
+<div class="card-deck">
+  <div class="card">
+    <img src="{{i.image}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{i.name}}</h5>
+      <p class="card-text"><p>{{i.price}}</p>
+      <p>{{i.description}}</p>
+      <p>{{i.tag}}</p></p>
+      <p class="card-text"><small class="text-muted">Available</small></p>
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary mb-2">Search</button>
-</form>
-<div class="card text-center">
-  <div class="card-header">
-    <hr />
-  </div>
-  <div class="card-body">
-    <h5 class="card-title"></h5>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Product</th>
-          <th scope="col">Category</th>
-           <th>Description</th>
-          <th scope="col-2">Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for i in Product %}
-        <tr>
-          <th scope="row">{{i.name}}</th>
-          <td>{{i.category}}</td>
-          <td>{{i.description}}</td>
-          <td>&#8377; {{i.price}}</td>
-          <td><img src="{{i.image}}" alt="image" style="width:100px;"></td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
- 
-  {% endblock %}
 </div>
+</div>
+</div>
+{% endfor %}
+{% endblock %}
