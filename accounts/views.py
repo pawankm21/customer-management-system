@@ -8,14 +8,12 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .decorators import unauthenticated_user, allowed_user
+from .decorators import unauthenticated_user, allowed_user, admin_only
+from django.contrib.auth.models import Group
 
 
 # Create your views here.
 
-
-@login_required()
-@allowed_user('admin')
 def home(request):
     products = Product.objects.all()
     customers = Customer.objects.all()
@@ -28,7 +26,7 @@ def home(request):
     return render(request, 'accounts/dashboard.html', context)
 
 
-@login_required(login_url='login')
+
 def customer(request, pk):
     customer = Customer.objects.get(id=pk)
     orders = customer.order_set.all()
@@ -40,19 +38,16 @@ def customer(request, pk):
     context = {'orders': orders, 'customer': customer, 'latest': latest, 'total': total, 'my_filter': my_filter}
     return render(request, 'accounts/customer.html', context)
 
-
-@login_required(login_url='login')
 def products(request):
     products = Product.objects.all()
-    context = {'Product': products}
+    context = {'products': products}
     return render(request, 'accounts/products.html', context)
 
 
-@login_required(login_url='login')
+
 def createorder(request, pk):
     OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'))
     customer = Customer.objects.get(id=pk)
-    # form = OrderForm(initial={'customer':customer})
     formset = OrderFormSet(instance=customer, queryset=Order.objects.none())
     if request.method == 'POST':
         formset = OrderFormSet(request.POST, instance=customer)
@@ -63,20 +58,19 @@ def createorder(request, pk):
     return render(request, 'accounts/forms.html', context)
 
 
-@login_required(login_url='login')
 def updateorder(request, pk_update):
     order = Order.objects.get(id=pk_update)
     form = OrderForm(instance=order)
     if request.method == 'POST':
         print('printing post:', request.POST)
-        form = OrderForm(request.POST)
+        form = OrderForm(request.POST,instance=order)
         if form.is_valid():
             form.save()
+            return redirect('/')
     context = {'forms': form}
     return render(request, 'accounts/forms.html', context)
 
 
-@login_required(login_url='login')
 def deleteorder(request, pk_delete):
     delete = Order.objects.get(id=pk_delete)
     if request.method == "POST":
@@ -86,7 +80,6 @@ def deleteorder(request, pk_delete):
     return render(request, 'accounts/delete.html', context)
 
 
-@login_required(login_url='login')
 def delete_customer(request, pk):
     customer = Customer.objects.get(id=pk)
     if request.method == "POST":
@@ -96,7 +89,7 @@ def delete_customer(request, pk):
     return render(request, 'accounts/delete_customer.html', context)
 
 
-@unauthenticated_user
+
 def login_user(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -115,19 +108,25 @@ def logout_user(request):
     return redirect('login')
 
 
-@unauthenticated_user
 def register(request):
-    if request.user.is_authenticated:
-        return redirect('home')
-    else:
-        form = RegisterForm()
-        if request.method == 'POST':
-            form = RegisterForm(request.POST)
-            if form.is_valid():
-                form.save()
-                user = form.cleaned_data.get('username')
-                messages.success(request, 'Welcome,', user)
-                return redirect('login')
+    form = RegisterForm()
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            group = Group.objects.get(name='costumer')
+            user.groups.add(group)
+            messages.success(request, 'Welcome,', username)
+            return redirect('login')
 
     context = {'form': form}
     return render(request, 'accounts/register.html', context)
+
+@login_required(login_url='login')
+@allowed_user('customer')
+def user(request):
+    orders= request.user.customer.order_set.all()
+    context={'orders':orders}
+   
+    return render(request,'accounts/user.html',context)

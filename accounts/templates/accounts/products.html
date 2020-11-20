@@ -1,21 +1,75 @@
-{% extends 'accounts/main.html' %} 
-{% block content %}
-<div class="row">
-{% for i in product %}
-  <div class="col-sm-6">
-<div class="card-deck">
-  <div class="card">
-    <img src="{{i.image}}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">{{i.name}}</h5>
-      <p class="card-text"><p>{{i.price}}</p>
-      <p>{{i.description}}</p>
-      <p>{{i.tag}}</p></p>
-      <p class="card-text"><small class="text-muted">Available</small></p>
+{% extends 'accounts/main.html' %}
+      {% block content %}
+      
+ 
+      
+      <hr>
+      <section class="text-center mb-4">
+
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+
+          {% for i in products  %}
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card">
+              <div class="view overlay">
+              <img src="{{i.image}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" >
+                <a>
+                  <div class="mask rgba-white-slight"><i>sale</i></div>
+                </a>
+              </div>
+              <!--Card image-->
+              <!--Card content-->
+              <div class="card-body text-center">
+                <!--Category & Title-->
+                <a href="" class="grey-text">
+                  <h5>{{i.name}}</h5>
+                </a>
+                <h5>
+                  <strong>
+                    <a href="" class="dark-grey-text"
+                      <span class="badge badge-pill danger-color">{{i.tag}}</span>
+                    </a>
+                  </strong>
+                </h5>
+
+                <h4 class="font-weight-bold blue-text">
+                  <strong>&#x20B9;{{i.price}}</strong>
+                </h4>
+
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+
+  <!--Main layout-->
+
+  <!--Footer-->
+  <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+    <!--Call to action-->
+    <div class="pt-4">
+      <a class="btn btn-outline-white" href="" target="_blank" role="button">Download our app
+        <i class="fas fa-download ml-2"></i>
+      </a>
+      <a class="btn btn-outline-white" href="" target="_blank" role="button">Start free trial
+        <i class="fas fa-graduation-cap ml-2"></i>
+      </a>
     </div>
-  </div>
-</div>
-</div>
-</div>
-{% endfor %}
-{% endblock %}
+    <!--/.Call to action-->
+
+    <hr class="my-4">
+
+  
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+      © 2018 Copyright:
+      <a href="" target="_blank"> hello </a>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  <!--/.Footer-->
+  {% endblock content %}
