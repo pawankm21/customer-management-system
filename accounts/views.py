@@ -1,7 +1,7 @@
 from django.forms import inlineformset_factory
 from django.shortcuts import render, redirect
 from .filters import OrderFilter
-from .forms import OrderForm, RegisterForm
+from .forms import OrderForm, RegisterForm, CustomerForm
 from .models import *
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -28,12 +28,18 @@ def home(request):
 @login_required(login_url='login')
 @allowed_user('admin')
 def customer(request, pk):
-    customer = Customer.objects.get(id=pk)
-    orders = customer.order_set.all()
-    latest = customer.order_set.latest('date_created')
-    total = orders.count()
-    my_filter = OrderFilter(request.GET, queryset=orders)
-    orders = my_filter.qs
+    try:
+        customer = Customer.objects.get(id=pk)
+        orders = customer.order_set.all()
+        latest = customer.order_set.latest('date_created')
+        total = orders.count()
+        my_filter = OrderFilter(request.GET, queryset=orders)
+        orders = my_filter.qs
+    except:
+        orders=None  
+        latest=None
+        total =0
+        my_filter=None
     print(orders)
     context = {'orders': orders, 'customer': customer, 'latest': latest, 'total': total, 'my_filter': my_filter}
     return render(request, 'accounts/customer.html', context)
@@ -48,7 +54,6 @@ def products(request):
 
 
 @login_required(login_url='login')
-@allowed_user('customer')
 def createorder(request, pk):
     OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'))
     customer = Customer.objects.get(id=pk)
@@ -63,7 +68,6 @@ def createorder(request, pk):
 
 
 @login_required(login_url='login')
-@allowed_user('customer')
 def updateorder(request, pk_update):
     order = Order.objects.get(id=pk_update)
     form = OrderForm(instance=order)
@@ -78,7 +82,6 @@ def updateorder(request, pk_update):
 
 
 @login_required(login_url='login')
-@allowed_user('customer')
 def deleteorder(request, pk_delete):
     delete = Order.objects.get(id=pk_delete)
     if request.method == "POST":
@@ -126,7 +129,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
-            group = Group.objects.get(name='costumer')
+            group = Group.objects.get(name='customer')
             user.groups.add(group)
             messages.success(request, 'Welcome,', username)
             return redirect('login')
@@ -138,6 +141,17 @@ def register(request):
 @allowed_user('customer')
 def user(request):
     orders= request.user.customer.order_set.all()
-    context={'orders':orders}
-
+    customer= request.user.customer
+    total = orders.count()
+    my_filter = OrderFilter(request.GET, queryset=orders)
+    context={'orders':orders, 'customer':customer,'total':total,'my_filter':my_filter}
     return render(request,'accounts/user.html',context)
+@login_required(login_url='login')
+
+def customer_profile(request):
+    user=request.user
+    update =CustomerForm(instance=user)
+    if update.is_valid():
+        user= update.save()
+    context ={'update':update}
+    return render(request,'accounts/customer_profile.html',context)

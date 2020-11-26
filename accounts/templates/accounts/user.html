@@ -3,11 +3,32 @@
 <section>
   <hr>
 </section>
+<div class="text-center">
+    <div class="card card-cascade narrower">
+
+              <!-- Card image -->
+              <div class="view view-cascade gradient-card-header mdb-color lighten-3">
+                <h5 class="mb-0 font-weight-bold">Our Customer</h5>
+              </div>
+              <!-- Card image -->
+              
+
+              <!-- Card content -->
+              <div class="card-body card-body-cascade text-center">
+                <img src="{{request.user.customer.profile_pic.url}}" alt="User Photo" class="z-depth-1 mb-3 mx-auto">
+
+                <p class="text-muted"><h1>{{customer.name}}</h1></p>
+              </div>
+              <!-- Card content -->
+</div>
+            </div>
+          <hr>
+</div>
 <div class="card-deck">
   <div class="card" id="card">
     <div class="card-body">
       <h4 class="card-title">{{customer.name}}</h5>
-      <p class="card-text"><button type="button" class="btn  btn-outline-success btn-lg btn-block">Update my profile</button>
+      <p class="card-text"><a href=" {% url 'profile' %} " type="button" class="btn  btn-outline-success btn-lg btn-block">Update my profile</a>
       <button type="button" class="btn  btn-outline-danger btn-lg btn-block">Delete my profile</button>
       <a name="" id="" class="btn btn-outline-primary btn-lg btn-block" href=" {{ customer.id }} " role="button">Create Order</a></p>
       <p class="card-text"><small class="text-muted">{{customer.date_created}}</small></p>
@@ -26,8 +47,8 @@
   <div class="card" id="card">
     <div class="card-body">
       <h5 class="card-title">Total Ordered:</h5>
-      <h3 class="card-text">{{total}}</h3>
-      <p class="card-text"><small class="text-muted">last ordered {{latest.date_created}}</small></p>
+      <h1 class="card-title">{{total}}</h1>
+      <p class="card-text"><small class="text-muted">last ordered {{latest}}</small></p>
     </div>
   </div>
 </div>
@@ -45,7 +66,7 @@
          {% endfor %}
     
   </div>
-  <button type="submit" class="btn btn-big btn-primary mb-2 ">Search</button>
+  <button type="submit" class="btn-sm btn-primary mb-2 ">Search</button>
 </form>
 </blockquote>
   </div>
@@ -56,7 +77,7 @@
   <div class="card-body" >
     <h5 class="card-title"></h5>
       <table class="table table-hover">
-  <thead>
+  <thead class="thead-dark">
     <tr>
       <th scope="col">Product</th>
       <th scope="col">Note</th>
@@ -73,8 +94,8 @@
       <td> {{i.note}} </td>
       <td> {{i.date_created}} </td>
       <td> {{i.status}} </td>
-        <td><a class="btn btn-success" href="{% url 'update' i.id %}" role="button">Update</a></td>
-        <td><a class="btn btn-danger" href=" {% url 'delete' i.id %} " role="button">Delete</a></td>
+        <td><a class="btn-sm btn-success " href="{% url 'update' i.id %}" role="button">Update</a></td>
+        <td><a class="btn-sm btn-danger" href=" {% url 'delete' i.id %} " role="button">Delete</a></td>
     </tr>
 {% endfor %}
   </tbody>

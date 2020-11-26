@@ -16,6 +16,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
+      {% if request.user.is_superuser %}
         <a class="nav-link" href="{% url 'home' %}">
         Dashboard
         <span class="sr-only">
@@ -23,15 +24,20 @@
         </span>
         </a>
       </li>
+      <li>
+        <a class="nav-link active" href="{% url 'products' %}">Products</a>
+      </li>
       
       <li>
-        <a class="nav-link active" href="{% url 'products' %}">Our Products</a>
+        <a class="nav-link active" href="{% url 'register' %}">Register</a>
+      </li>
+      {% endif %}
+
+    <li>
+        <a class="nav-link active" href="{% url 'profile' %}">Update profile</a>
       </li>
       <li>
-        <a class="nav-link active" href="{% url 'logout' %}">logout</a>
-      </li>
-      <li>
-        <a class="nav-link active" href="{% url 'register' %}">register</a>
+        <a class="nav-link active" href="{% url 'logout' %}">Logout</a>
       </li>
      <li class="nav-item active active" style="font-size: 20px; color: white; padding-right:10px;padding-left:400px; padding-top:10px;"><i>Hello, {{request.user}}.</i> </li>
     </ul>
@@ -42,7 +48,7 @@
         placeholder="Search"
         aria-label="Search"
       />
-      <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">
+      <button class="btn btn-outline-dark btn-sm" type="submit">
         Search
       </button>
     </form>

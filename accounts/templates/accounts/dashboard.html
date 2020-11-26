@@ -1,17 +1,17 @@
 {% extends 'accounts/main.html' %} {% block content %}
-
+<hr>
 <div class="row" id='card'>
   <div class="col-sm-4">
-    <div class="card" id='heading'>
+    <div class="card winter-neva-gradient" id='heading'>
       <div class="card-body">
         <h5 class="card-title">Total ordered</h5>
-        <hr />
+        <hr>
         <p class="card-text">{{num_orders}}</p>
       </div>
     </div>
   </div>
   <div class="col-sm-4">
-    <div class="card" id='heading'>
+    <div class="card winter-neva-gradient" id='heading'>
       <div class="card-body">
         <h5 class="card-title">Ordered Delivered</h5>
         <hr />
@@ -20,25 +20,25 @@
     </div>
   </div>
   <div class="col-sm-4">
-    <div class="card" id='heading'>
+    <div class="card winter-neva-gradient" id='heading'>
       <div class="card-body">
         <h5 class="card-title">Orders Pending</h5>
         <hr />
-        <p class="card-text">{{pend}}</p>
+        <p class="card-text"><b>{{pend}}</b></p>
       </div>
     </div>
   </div>
 </div>
 <hr />
 <div class="row">
-  <div class="col-sm-6">
-    <div class="card">
+  <div class="col">
+   
       <div class="card-body text-center">
         <h5 class="card-title">customers</h5>
         <p class="card-text">Find all your customers here.</p>
-        <a href="#" class="btn btn-info">Create customer</a>
+        <a href="#" class="btn btn-info aqua-gradient">Create customer</a>
         <hr>
-        <table class="table table-hover">
+        <table class="table table-hover" style="overflow-x:auto;">
           <thead class='thead-light'>
             <tr>
               <th scope="col">customer</th>
@@ -49,7 +49,7 @@
           <tbody>
             {% for customer in customers %}
             <tr>
-              <td><a href="{% url 'customer' customer.id %}">{{customer.name}}</a></td>
+              <td><a href="{% url 'customer' customer.id %}" class="btn btn-primary btn-sm active btn-rounded" role="button" aria-pressed="true">{{customer.name}}</a></td>
               <td>{{customer.email}}</td>
               <td> {{customer.phone}}</td>
             </tr>
@@ -57,14 +57,12 @@
           </tbody>
         </table>
       </div>
-    </div>
   </div>
-  <div class="col-sm-6">
-    <div class="card">
+  <div class="col">
       <div class="card-body text-center">
         <h5 class="card-title">Last 5 orders</h5>
         <p class="card-text">Details of last five orders</p>
-        <table class="table table-hover">
+        <table class="table table-hover" style="overflow-x:auto;">
           <thead class='thead-light' >
             <tr>
               <th scope="col">Product</th>
@@ -81,10 +79,10 @@
               <td>{{i.date_created}}</td>
               <td>{{i.status}}</td>
               <td>
-                <a href="{% url 'update' i.id %}" class="btn btn-success">Update</a>
+                <a href="{% url 'update' i.id %}" class="btn-sm dusty-grass-gradient">Update</a>
               </td>
               <td>
-                <a href="{% url 'delete' i.id %}" class="btn btn-danger">Remove</a>
+                <a href="{% url 'delete' i.id %}" class="btn-sm  ripe-malinka-gradient">Remove</a>
               </td>
             </tr>
             {% endfor %}
@@ -92,7 +90,6 @@
         </table>
       </div>
     </div>
-  </div>
 </div>
 
 <!--div  id="whitesmoke"class="card">
