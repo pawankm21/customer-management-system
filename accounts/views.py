@@ -36,17 +36,16 @@ def customer(request, pk):
         my_filter = OrderFilter(request.GET, queryset=orders)
         orders = my_filter.qs
     except:
-        orders=None  
-        latest=None
-        total =0
-        my_filter=None
+        orders = None
+        latest = None
+        total = 0
+        my_filter = None
     print(orders)
     context = {'orders': orders, 'customer': customer, 'latest': latest, 'total': total, 'my_filter': my_filter}
     return render(request, 'accounts/customer.html', context)
 
 
 @login_required(login_url='login')
-@allowed_user('admin')
 def products(request):
     products = Product.objects.all()
     context = {'products': products}
@@ -55,7 +54,10 @@ def products(request):
 
 @login_required(login_url='login')
 def createorder(request, pk):
-    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'))
+    if request.user.groups.all()[0].name=='customer':
+        OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', ))
+    else:
+        OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'))
     customer = Customer.objects.get(id=pk)
     formset = OrderFormSet(instance=customer, queryset=Order.objects.none())
     if request.method == 'POST':
@@ -73,7 +75,7 @@ def updateorder(request, pk_update):
     form = OrderForm(instance=order)
     if request.method == 'POST':
         print('printing post:', request.POST)
-        form = OrderForm(request.POST,instance=order)
+        form = OrderForm(request.POST, instance=order)
         if form.is_valid():
             form.save()
             return redirect('/')
@@ -121,6 +123,7 @@ def logout_user(request):
     logout(request)
     return redirect('login')
 
+
 @unauthenticated_user
 def register(request):
     form = RegisterForm()
@@ -129,29 +132,38 @@ def register(request):
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
-            group = Group.objects.get(name='customer')
-            user.groups.add(group)
             messages.success(request, 'Welcome,', username)
             return redirect('login')
 
     context = {'form': form}
     return render(request, 'accounts/register.html', context)
 
+
 @login_required(login_url='login')
 @allowed_user('customer')
 def user(request):
-    orders= request.user.customer.order_set.all()
-    customer= request.user.customer
-    total = orders.count()
-    my_filter = OrderFilter(request.GET, queryset=orders)
-    context={'orders':orders, 'customer':customer,'total':total,'my_filter':my_filter}
-    return render(request,'accounts/user.html',context)
-@login_required(login_url='login')
+    try:
+        orders = request.user.customer.order_set.all()
+        customer = request.user.customer
+        total = orders.count()
+        my_filter = OrderFilter(request.GET, queryset=orders)
+        customer.profile_pic = 'images/download.png'
+    except:
+        orders = None
+        customer = request.user.customer
+        total = 0
+        my_filter = None
+        customer.profile_pic = 'images/download.png'
 
+    context = {'orders': orders, 'customer': customer, 'total': total, 'my_filter': my_filter}
+    return render(request, 'accounts/user.html', context)
+
+
+@login_required(login_url='login')
 def customer_profile(request):
-    user=request.user
-    update =CustomerForm(instance=user)
+    user = request.user
+    update = CustomerForm(instance=user)
     if update.is_valid():
-        user= update.save()
-    context ={'update':update}
-    return render(request,'accounts/customer_profile.html',context)
+        user = update.save()
+    context = {'update': update}
+    return render(request, 'accounts/customer_profile.html', context)

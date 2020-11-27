@@ -1,16 +1,21 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-
-
+DEFAULT = 'images/download.png'
 # Create your models here.
 class Customer(models.Model):
+
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, null=True)
     phone = models.CharField(max_length=200, null=True)
     email = models.CharField(max_length=200, null=True)
-    profile_pic =models.ImageField(null =True, blank= True)
+    profile_pic =models.ImageField(null =True, blank= True, default='/images/download.png')
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+    def set_image_to_default(self):
+        self.profile_pic.delete(save=False)  # delete old image file
+        self.profile_pic = DEFAULT
+        self.save()
    
 
     def __str__(self):
@@ -53,7 +58,7 @@ class Order(models.Model):
     product = models.ForeignKey(Product, null=True, on_delete=models.CASCADE)
     status = models.CharField(max_length=200, null=True, choices=STATUS)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
-    note = models.CharField(max_length=200, null=True)
+    note = models.CharField(max_length=200, null=True,blank=True,default='general order')
 
     def __str__(self):
         return  self.product.name

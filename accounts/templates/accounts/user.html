@@ -15,7 +15,12 @@
 
               <!-- Card content -->
               <div class="card-body card-body-cascade text-center">
-                <img src="{{request.user.customer.profile_pic.url}}" alt="User Photo" class="z-depth-1 mb-3 mx-auto">
+            {% ifequal request.user.customer.profile_pic None %}
+    <img src="" >
+{% else %}
+    <img src="{{request.user.customer.profile_pic.url}}" alt="User Photo" class="z-depth-1 mb-3 mx-auto">
+{% endifequal %}
+                
 
                 <p class="text-muted"><h1>{{customer.name}}</h1></p>
               </div>
@@ -30,7 +35,7 @@
       <h4 class="card-title">{{customer.name}}</h5>
       <p class="card-text"><a href=" {% url 'profile' %} " type="button" class="btn  btn-outline-success btn-lg btn-block">Update my profile</a>
       <button type="button" class="btn  btn-outline-danger btn-lg btn-block">Delete my profile</button>
-      <a name="" id="" class="btn btn-outline-primary btn-lg btn-block" href=" {{ customer.id }} " role="button">Create Order</a></p>
+      <a name="" id="" class="btn btn-outline-primary btn-lg btn-block" href=" {% url 'forms' customer.id %} " role="button">Create Order</a></p>
       <p class="card-text"><small class="text-muted">{{customer.date_created}}</small></p>
     </div>
   </div>

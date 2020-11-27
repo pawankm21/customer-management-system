@@ -1,24 +1,26 @@
 {% extends 'accounts/main.html' %} {% load static %} {% block content %}
 <div class="card" style="width: 50rem; margin-left: 300px">
   <div class="card-body">
-  <h1>Customer: {{customer.name}}</h1>
+  <h1>{{customer.name}}, choose your order here </h1>
   <hr>
 
     <form action="" method="POST">
       {% csrf_token %}
 
-      {{formset.management_form }}
-      {% for form in formset %}
-      {{form}}
-      <hr>
-      {% endfor %}
+     {{formset.management_form}}
+     {% for form in formset  %}
+    <ul> {{form}}</ul>
+     {% endfor %}
       
       {{forms.management_form}}
-      {% for form in forms %}
-      {{form}}
+     
+       <p>{{forms.product}}</p>
+       <hr>
+      <p>{{forms.status}}</p>
       <hr>
-      {% endfor %}
-
+      <p>{{forms.note}}</p>
+      <hr>
+      
       <button type="submit" class="btn btn-primary" name='submit' method='POST'>Submit</button>
       <hr>
     </form>

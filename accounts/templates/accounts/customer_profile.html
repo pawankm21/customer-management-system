@@ -52,7 +52,7 @@
               <form method="POST" enctype="multipart/form-data" class="card-body card-body-cascade text-center">
               {% csrf_token %}
                 <img src=" {{request.user.customer.profile_pic.url}} " alt="User Photo" class="z-depth-1 mb-3 mx-auto">
-
+    
               <p class="text-muted"><small>{{update.profile_pic}}</small></p>
                 
                 
