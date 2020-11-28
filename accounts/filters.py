@@ -8,15 +8,20 @@ class OrderFilter(django_filters.FilterSet):
     start_date = DateFilter(field_name='date_created',lookup_expr='gte',widget=TextInput(attrs={'placeholder':'Ordered after'}))
     end_date = DateFilter(field_name='date_created',lookup_expr='lte',widget=TextInput(attrs={'placeholder':'Ordered before'}))
     status =ChoiceFilter(field_name='status',choices=Order.STATUS,label='none')
+    name =django_filters.CharFilter(field_name='name',lookup_expr='icontains',widget=TextInput(attrs={'placeholder':'Product name'}))
     class Meta:
         model = Order
-        fields = '__all__'
-        exclude =['customer','date_created']
+        fields = ('name','start_date',
+        'end_date',
+        'status',
+        
+        )
+       
 
 
 class ProductFilter(django_filters.FilterSet):
     price= django_filters.NumberFilter(field_name='price',lookup_expr='lte',widget=TextInput(attrs={'placeholder':'price less than'}))
-    name =django_filters.CharFilter(field_name='name',widget=TextInput(attrs={'placeholder':'Product name'}))
+    name =django_filters.CharFilter(field_name='name',lookup_expr='icontains',widget=TextInput(attrs={'placeholder':'Product name'}))
     category = django_filters.ChoiceFilter(field_name='category',label='Category',choices=Product.CATEGORY,)
     class Meta:
         model = Product
@@ -26,7 +31,7 @@ class ProductFilter(django_filters.FilterSet):
         
 
 class CustomerFilter(django_filters.FilterSet):
-    name=django_filters.CharFilter(field_name='name',widget=TextInput(attrs={'placeholder':'Customer name'}))
+    name=django_filters.CharFilter(field_name='name',lookup_expr='icontains',widget=TextInput(attrs={'placeholder':'Customer name'}))
     class Meta:
         models: Customer
         fields =(
