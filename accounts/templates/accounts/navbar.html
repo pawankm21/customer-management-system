@@ -1,6 +1,6 @@
 {% block navbar %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-info">
-  <a class="navbar-brand" href="{% url 'home' %}">Shop</a>
+  <a class="navbar-brand" href="{% url 'home' %}">Home</a>
   <button
     class="navbar-toggler"
     type="button"
@@ -25,16 +25,12 @@
         </a>
       </li>
      
-      
-      <li>
-        <a class="nav-link active" href="{% url 'register' %}">Register</a>
-      </li>
       {% endif %}
  <li>
         <a class="nav-link active" href="{% url 'products' %}">Products</a>
       </li>
-    <li>
-        <a class="nav-link active" href="{% url 'profile' %}">Update profile</a>
+      <li>
+        <a class="nav-link active" href="{% url 'profile' %}">Settings</a>
       </li>
       <li>
         <a class="nav-link active" href="{% url 'logout' %}">Logout</a>

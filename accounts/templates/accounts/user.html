@@ -3,11 +3,20 @@
 <section>
   <hr>
 </section>
+<style>
+	.profile-pic{
+		max-width: 200px;
+		max-height:200px;
+		margin: 0 auto;
+		border-radius: 100%;
+    
+	}
+</style>
 <div class="text-center">
-    <div class="card card-cascade narrower">
+    <div class="card card-cascade narrower cloudy-knoxville-gradient">
 
               <!-- Card image -->
-              <div class="view view-cascade gradient-card-header mdb-color lighten-3">
+              <div class="view view-cascade gradient-card-header mdb-color lighten-3 ">
                 <h5 class="mb-0 font-weight-bold">Our Customer</h5>
               </div>
               <!-- Card image -->
@@ -15,22 +24,18 @@
 
               <!-- Card content -->
               <div class="card-body card-body-cascade text-center">
-            {% ifequal request.user.customer.profile_pic None %}
-    <img src="" >
-{% else %}
-    <img src="{{request.user.customer.profile_pic.url}}" alt="User Photo" class="z-depth-1 mb-3 mx-auto">
-{% endifequal %}
-                
+
+                <img  src="{{request.user.customer.profile_pic.url}}" alt="User Photo" class="z-depth-1 mb-3 mx-auto profile-pic">
 
                 <p class="text-muted"><h1>{{customer.name}}</h1></p>
               </div>
               <!-- Card content -->
-</div>
+              </div>
             </div>
           <hr>
 </div>
 <div class="card-deck">
-  <div class="card" id="card">
+  <div class="card heavy-rain-gradient" id="card">
     <div class="card-body">
       <h4 class="card-title">{{customer.name}}</h5>
       <p class="card-text"><a href=" {% url 'profile' %} " type="button" class="btn  btn-outline-success btn-lg btn-block">Update my profile</a>
@@ -39,7 +44,7 @@
       <p class="card-text"><small class="text-muted">{{customer.date_created}}</small></p>
     </div>
   </div>
-  <div class="card" id="card" >
+  <div class="card heavy-rain-gradient" id="card" >
     <div class="card-body">
       <h5 class="card-title">Customer Information</h5>
       <p class="card-text"> <li>Email: {{customer.email}}</li>
@@ -49,7 +54,7 @@
       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
     </div>
   </div>
-  <div class="card" id="card">
+  <div class="card heavy-rain-gradient" id="card">
     <div class="card-body">
       <h5 class="card-title">Total Ordered:</h5>
       <h1 class="card-title">{{total}}</h1>
@@ -77,12 +82,12 @@
   </div>
 </div>
 </div>
-<div class="card text-center">
+<div class="card  winter-neva-gradient">
  
   <div class="card-body" >
     <h5 class="card-title"></h5>
-      <table class="table table-hover">
-  <thead class="thead-dark">
+      <table class="table table-hover ">
+  <thead class="thead-light">
     <tr>
       <th scope="col">Product</th>
       <th scope="col">Note</th>

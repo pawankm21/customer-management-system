@@ -1,6 +1,6 @@
 from django.forms import inlineformset_factory
 from django.shortcuts import render, redirect
-from .filters import OrderFilter
+from .filters import OrderFilter, ProductFilter
 from .forms import OrderForm, RegisterForm, CustomerForm
 from .models import *
 from django.contrib import messages
@@ -48,14 +48,16 @@ def customer(request, pk):
 @login_required(login_url='login')
 def products(request):
     products = Product.objects.all()
-    context = {'products': products}
+    product_filter=ProductFilter(request.GET,queryset=products)
+    products =product_filter.qs
+    context = {'products': products,'product_filter':product_filter}
     return render(request, 'accounts/products.html', context)
 
 
 @login_required(login_url='login')
 def createorder(request, pk):
-    if request.user.groups.all()[0].name=='customer':
-        OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', ))
+    if request.user.groups.all()[0].name == 'customer':
+        OrderFormSet = inlineformset_factory(Customer, Order, fields=('product',))
     else:
         OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'))
     customer = Customer.objects.get(id=pk)
@@ -147,13 +149,12 @@ def user(request):
         customer = request.user.customer
         total = orders.count()
         my_filter = OrderFilter(request.GET, queryset=orders)
-        customer.profile_pic = 'images/download.png'
     except:
         orders = None
         customer = request.user.customer
         total = 0
         my_filter = None
-        customer.profile_pic = 'images/download.png'
+        customer.profile_pic = '/download.png'
 
     context = {'orders': orders, 'customer': customer, 'total': total, 'my_filter': my_filter}
     return render(request, 'accounts/user.html', context)
@@ -161,9 +162,11 @@ def user(request):
 
 @login_required(login_url='login')
 def customer_profile(request):
-    user = request.user
-    update = CustomerForm(instance=user)
-    if update.is_valid():
-        user = update.save()
-    context = {'update': update}
+    customer = request.user.customer
+    update = CustomerForm(instance=customer)
+    if request.method == 'POST':
+        update = CustomerForm(request.POST, request.FILES, instance=customer)
+        if update.is_valid():
+            customer = update.save()
+    context = {'update': update, }
     return render(request, 'accounts/customer_profile.html', context)

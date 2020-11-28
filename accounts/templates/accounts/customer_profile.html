@@ -11,18 +11,14 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
   <!-- Bootstrap core CSS -->
 
-  <!-- Your custom styles (optional) -->
-  <style>
-    .card.card-cascade .view.gradient-card-header {
-            padding: 1.1rem 1rem;
-        }
-
-        .card.card-cascade .view {
-            box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.2), 0 2px 8px 0 rgba(0, 0, 0, 0.19);
-        }
-    </style>
-<style type="text/css">/* Chart.js */
-@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
+ <style>
+	.profile-pic{
+		max-width: 200px;
+		max-height:200px;
+		margin: 0 auto;
+		border-radius: 50%;
+	}
+</style>
 
 <body class="fixed-sn white-skin" data-new-gr-c-s-check-loaded="14.974.0">
 <hr>
@@ -40,37 +36,24 @@
           <div class="col-lg-4 mb-4">
 
             <!-- Card -->
-            <div class="card card-cascade narrower">
+            <div class="card card-cascade narrower winter-neva-gradient">
 
               <!-- Card image -->
               <div class="view view-cascade gradient-card-header mdb-color lighten-3">
-                <h5 class="mb-0 font-weight-bold">Edit Photo</h5>
+                <h3 class="mb-0 font-weight-bold text-center text-light blue-gradient "> {{request.user.customer.name}}</h3>
               </div>
               <!-- Card image -->
 
-              <!-- Card content -->
-              <form method="POST" enctype="multipart/form-data" class="card-body card-body-cascade text-center">
-              {% csrf_token %}
-                <img src=" {{request.user.customer.profile_pic.url}} " alt="User Photo" class="z-depth-1 mb-3 mx-auto">
-    
-              <p class="text-muted"><small>{{update.profile_pic}}</small></p>
-                
-                
-                <div class="row flex-center">
-                
-                 <button type="submit" class="btn btn-sm btn-primary waves-effect waves-light">Submit</button>
-                
-                </div>
-              </form>
-              <!-- Card content -->
+  <img  src="{{request.user.customer.profile_pic.url}}" alt="User Photo" class="z-depth-1 mb-3 mx-auto profile-pic">
+
+              <p class="text-muted text-center"><small>{{update.profile_pic.label}}</small></p>
+            
 
             </div>
             <!-- Card -->
 
           </div>
-          <!-- First column -->
-
-          <!-- Second column -->
+         
           <div class="col-lg-8 mb-4">
 
             <!-- Card -->
@@ -78,12 +61,12 @@
 
               <!-- Card image -->
               <div class="view view-cascade gradient-card-header mdb-color lighten-3">
-                <h5 class="mb-0 font-weight-bold">Edit Account</h5>
+                <h3 class="mb-0 font-weight-bold text-light blue-gradient">Edit Account</h3>
               </div>
               <!-- Card image -->
 
               <!-- Card content -->
-              <div class="card-body card-body-cascade text-center">
+              <div class="card-body card-body-cascade text-center winter-neva-gradient">
 
                 <!-- Edit Form -->
                 <form method="POST" enctype="multipart/form-data">
@@ -97,71 +80,31 @@
                         {{update.name.label}}
                         {{update.name}}
                       </div>
-                    </div>
-                    <!-- Second column -->
-                    <div class="col-md-6">
+                    
+                  
                       <div class="md-form mb-0">
                         {{update.phone.label}}
                         {{update.phone}}
                       </div>
-                    </div>
-                  </div>
-                  <!-- First row -->
-
-                  <!-- First row -->
-                  <div class="row">
-                    <!-- First column -->
-                    <div class="col-md-6">
-                      <div class="md-form mb-0">
-                       
-                      </div>
-                    </div>
-
-                    <!-- Second column -->
-                    <div class="col-md-6">
-                      <div class="md-form mb-0">
-                       
-                      </div>
-                    </div>
-                  </div>
-                  <!-- First row -->
-
-                  <!-- Second row -->
-                  <div class="row">
-
-                    <!-- First column -->
-                    <div class="col-md-6">
+              
                       <div class="md-form mb-0">
                        {{update.email.label}}
                         {{update.email}}
                       </div>
-                    </div>
-                    <!-- Second column -->
-
-                    <div class="col-md-6">
-                      <div class="md-form mb-0">
-                        
-                      </div>
+                       
                     </div>
                   </div>
-                  <!-- Second row -->
-
-                  <!-- Third row -->
+                  
+                  
+                    
                   <div class="row">
-
-                    <!-- First column -->
-                    <div class="col-md-12">
-                      <div class="md-form mb-0">
-                      
-                      </div>
+                   <div class="col-md-6 text-center my-4">
+                     Upload your picture here:
+                     <p> {{update.profile_pic}}</p>
                     </div>
-                  </div>
-                  <!-- Third row -->
-
-                  <!-- Fourth row -->
-                  <div class="row">
+                    
                     <div class="col-md-12 text-center my-4">
-                      <span class="waves-input-wrapper waves-effect waves-light"><input type="submit" value="Update Account" class="btn btn-info btn-rounded"></span>
+                     <button type="submit" class="btn btn-primary">Update Account</button>
                     </div>
                   </div>
                   <!-- Fourth row -->

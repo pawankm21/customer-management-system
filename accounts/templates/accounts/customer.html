@@ -40,14 +40,22 @@
       <blockquote class="blockquote mb-0">
  
   <form class="form-inline  form-row" method='get'>
-  <div class="form-group mx-sm-1 mb-2 col-10">
-         {% for i in my_filter.form  %}
+  <div class="form-group mx-sm-1 mb-2 col-12">
+         {{ my_filter.form.product.label}}:
+         {{ my_filter.form.product}}
          <hr>
-         {{i}}
-         {% endfor %}
+         status:
+          {{ my_filter.form.status}}
+          <hr>
+          {{ my_filter.form.start_date}}
+          {{ my_filter.form.end_date}}
+
+     
     
   </div>
+  <div class="mb-2 col-12">
   <button type="submit" class="btn btn-big btn-primary mb-2 ">Search</button>
+</div>
 </form>
 </blockquote>
   </div>

@@ -19,6 +19,6 @@ class RegisterForm(UserCreationForm):
 
 class CustomerForm(ModelForm):
     class Meta:
-        model=Customer
+        model= Customer
         fields = ['name','phone','email','profile_pic']
         
