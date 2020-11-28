@@ -1,12 +1,12 @@
 from django.forms import inlineformset_factory
 from django.shortcuts import render, redirect
-from .filters import OrderFilter, ProductFilter
+from .filters import OrderFilter, ProductFilter,CustomerFilter
 from .forms import OrderForm, RegisterForm, CustomerForm
 from .models import *
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .decorators import unauthenticated_user, allowed_user, admin_only
+from .decorators import unauthenticated_user, allowed_user
 from django.contrib.auth.models import Group
 
 
@@ -20,8 +20,10 @@ def home(request):
     num_orders = Order.objects.count()
     delivered = Order.objects.filter(status='Delivered').count()
     pending = Order.objects.filter(status='Pending').count()
+    customer_filter =CustomerFilter(request.GET,queryset=customers)
+    customers=customer_filter.qs
     context = {'Product': products, 'orders': orders, 'customers': customers, 'num_orders': num_orders,
-               'delivered': delivered, 'pend': pending}
+               'delivered': delivered, 'pend': pending, 'customer_filter':customer_filter}
     return render(request, 'accounts/dashboard.html', context)
 
 
@@ -170,3 +172,4 @@ def customer_profile(request):
             customer = update.save()
     context = {'update': update, }
     return render(request, 'accounts/customer_profile.html', context)
+

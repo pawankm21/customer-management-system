@@ -24,3 +24,11 @@ class ProductFilter(django_filters.FilterSet):
             'name','category','price','tag',
         )
         
+
+class CustomerFilter(django_filters.FilterSet):
+    name=django_filters.CharFilter(field_name='name',widget=TextInput(attrs={'placeholder':'Customer name'}))
+    class Meta:
+        models: Customer
+        fields =(
+            'name'
+        )
