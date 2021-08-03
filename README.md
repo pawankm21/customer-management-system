@@ -33,6 +33,7 @@ This is a customer management web-app where users can create orders for products
 * Used Bootstrap to make it 100% responsive.
 * Role based Authentication.
 * Product and User search.
+* Filter products based on tags.
 
 
 
