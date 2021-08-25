@@ -1,5 +1,5 @@
-# Customer Management app[](http://pawankm21.pythonanywhere.com/)
-> A customer management system made with django.[](https://0a795899-7614-481b-a77b-a9595d8120a2.id.repl.co/)
+# [Customer Management app](http://pawankm21.pythonanywhere.com/)
+> [A customer management system made with django.](https://0a795899-7614-481b-a77b-a9595d8120a2.id.repl.co/)
 
 
 
