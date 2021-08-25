@@ -24,7 +24,7 @@ Tools and packages required to successfully install this project.
 
 ![Screenshots of projects](https://github.com/pawankm21/customer-management-system/blob/working/images/products.png)
 
-![Screenshots of projects](https://github.com/pawankm21/customer-management-system/blob/working/images/userprofile.png)
+![Screenshots of projects](https://github.com/pawankm21/customer-management-system/blob/working/images/userprofile.jpg)
 
 
 ## Features
