@@ -48,6 +48,8 @@ for Bootstrap v5 & v4.
 [![](https://img.shields.io/static/v1?label=&message=pawan_kumar_mishra&color=blue&logo=LinkedIn)](https://www.linkedin.com/in/pawan-kumar-mishra/)
 ##
 
-[![](https://img.shields.io/badge/Try%20it%20out-red)](http://pawankm21.pythonanywhere.com/)
+
+[![](https://img.shields.io/badge/ThankTRY%20IT%20OUT-red)](http://pawankm21.pythonanywhere.com/)
+
 
 
