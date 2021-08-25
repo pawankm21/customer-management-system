@@ -18,8 +18,6 @@ Tools and packages required to successfully install this project.
 
  
 ## Screenshots
-
-
 ![Screenshots of projects](https://github.com/pawankm21/customer-management-system/blob/working/images/admindashboard.png)
 
 ![Screenshots of the project](https://github.com/pawankm21/customer-management-system/blob/working/images/profile.png)
