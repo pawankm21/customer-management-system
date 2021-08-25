@@ -20,13 +20,14 @@ Tools and packages required to successfully install this project.
 ## Screenshots
 
 
-![Screenshots of projects](https://github.com/pawankm21/customer-management-system/blob/bb93f22b1451aef66e020f854f48da47ce330fd2/New%20folder/Annotation%202020-11-26%20182342.jpg)
+![Screenshots of projects](https://github.com/pawankm21/customer-management-system/blob/working/images/admindashboard.png)
 
-![Screenshots of the project](https://github.com/pawankm21/customer-management-system/blob/bb93f22b1451aef66e020f854f48da47ce330fd2/New%20folder/Annotation%202020-11-26%20183935.jpg)
+![Screenshots of the project](https://github.com/pawankm21/customer-management-system/blob/working/images/profile.png)
 
-![Screenshots of projects](https://github.com/pawankm21/customer-management-system/blob/bb93f22b1451aef66e020f854f48da47ce330fd2/New%20folder/Annotation%202020-11-26%20184221.jpg)
+![Screenshots of projects](https://github.com/pawankm21/customer-management-system/blob/working/images/products.png)
 
-![Screenshots of projects](https://github.com/pawankm21/customer-management-system/blob/bb93f22b1451aef66e020f854f48da47ce330fd2/New%20folder/image.png)
+![Screenshots of projects](https://github.com/pawankm21/customer-management-system/blob/working/images/userprofile.png)
+
 
 ## Features
 This is a customer management web-app where users can create orders for products and admin can track the orders.
