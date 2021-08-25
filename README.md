@@ -49,7 +49,7 @@ for Bootstrap v5 & v4.
 ##
 
 
-[![](https://img.shields.io/badge/ThankTRY%20IT%20OUT-red)](http://pawankm21.pythonanywhere.com/)
+[![](https://img.shields.io/badge/TRY%20IT%20OUT-red)](http://pawankm21.pythonanywhere.com/)
 
 
 
