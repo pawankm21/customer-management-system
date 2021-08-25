@@ -24,12 +24,11 @@ Tools and packages required to successfully install this project.
 
 ![Screenshots of projects](https://github.com/pawankm21/customer-management-system/blob/working/images/products.png)
 
-![Screenshots of projects](https://github.com/pawankm21/customer-management-system/blob/working/images/userprofile.png)
+![Screenshots of projects](https://github.com/pawankm21/customer-management-system/blob/working/images/userprofile.jpg)
 
 
 ## Features
 This is a customer management web-app where users can create orders for products and admin can track the orders.
-* Used Bootstrap to make it 100% responsive.
 * Role based Authentication.
 * Product and User search.
 * Filter products based on tags.
