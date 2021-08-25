@@ -48,7 +48,9 @@ for Bootstrap v5 & v4.
 ##
 
 
+
 [![](https://img.shields.io/badge/TRY%20IT%20OUT-red)](http://pawankm21.pythonanywhere.com/)
+
 
 
 
