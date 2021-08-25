@@ -1,5 +1,5 @@
-# Customer Management app
-> A customer management system made with django.
+# Customer Management app[](http://pawankm21.pythonanywhere.com/)
+> A customer management system made with django.[](https://0a795899-7614-481b-a77b-a9595d8120a2.id.repl.co/)
 
 
 
@@ -8,12 +8,12 @@
 
 ## Requirements  (Prerequisites)
 Tools and packages required to successfully install this project.
-* Python 3.3 and up [Install]()
-* Django 3.1.1 [Install]()
-* PostgreSQL [Install]()
-* pscopg2( for using postgres with django)  [Install]()
-* django-filter [Install]()
-* pillow (for using images) [Install]()
+* Python 3.3 and up [Install](https://www.python.org/)
+* Django 3.1.1 [Install](https://www.djangoproject.com/)
+* PostgreSQL [Install](https://www.postgresql.org/)
+* pscopg2( for using postgres with django)  [Install](https://pypi.org/project/psycopg2/)
+* django-filter [Install](https://django-filter.readthedocs.io/en/stable/)
+* pillow (for using images) [Install](https://pillow.readthedocs.io/en/stable/)
 
 
  
