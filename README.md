@@ -24,12 +24,11 @@ Tools and packages required to successfully install this project.
 
 ![Screenshots of projects](https://github.com/pawankm21/customer-management-system/blob/working/images/products.png)
 
-![Screenshots of projects](https://github.com/pawankm21/customer-management-system/blob/working/images/userprofile.png)
+![Screenshots of projects](https://github.com/pawankm21/customer-management-system/blob/working/images/userprofile.jpg)
 
 
 ## Features
 This is a customer management web-app where users can create orders for products and admin can track the orders.
-* Used Bootstrap to make it 100% responsive.
 * Role based Authentication.
 * Product and User search.
 * Filter products based on tags.
@@ -48,6 +47,6 @@ for Bootstrap v5 & v4.
 [![](https://img.shields.io/static/v1?label=&message=pawan_kumar_mishra&color=blue&logo=LinkedIn)](https://www.linkedin.com/in/pawan-kumar-mishra/)
 ##
 
-[![](https://img.shields.io/badge/Thanks%20to-Dennis%20Ivanov-red)](https://www.youtube.com/channel/UCTZRcDjjkVajGL6wd76UnGg)
+[![](https://img.shields.io/badge/Try%It%Out-red)](https://www.youtube.com/channel/UCTZRcDjjkVajGL6wd76UnGg)
 
 
