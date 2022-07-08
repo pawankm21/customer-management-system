@@ -22,7 +22,8 @@ Tools and packages required to successfully install this project.
 
 ![Screenshots of the project](https://github.com/pawankm21/customer-management-system/blob/working/images/profile.png)
 ![Annotation 2020-11-26 192735](https://user-images.githubusercontent.com/63885768/178054583-90c53f0a-d270-4a9a-87b4-9acab9e44bb2.jpg)
-![Screenshot (49)](https://user-images.githubusercontent.com/63885768/178054803-e17bdb49-327c-48bb-b18d-d7828c979d0b.png)
+![Screenshot (49)](https://user-images.githubusercontent.com/63885768/178055819-a771c3ff-8ce0-4c15-980d-e37867029d31.png)
+
 
 
 
